@@ -13,9 +13,20 @@ public class Calculator {
     Color black = new Color(28, 28, 28);
     Color orange = new Color(255, 149, 0);
 
+    String[] buttonValues = {
+            "AC", "+/-", "%", "÷",
+            "7", "8", "9", "×",
+            "4", "5", "6", "-",
+            "1", "2", "3", "+",
+            "0", ".", "√", "="
+    };
+    String[] rightSymbols = { "÷", "×", "-", "+", "=" };
+    String[] topSymbols = { "AC", "+/-", "%" };
+
     JFrame frame = new JFrame("Calculator");
     JLabel displayLabel = new JLabel();
     JPanel displayPanel = new JPanel();
+    JPanel buttonsPanel = new JPanel();
 
     Calculator() {
         // Creates inital JFrame
@@ -36,6 +47,30 @@ public class Calculator {
         displayPanel.setLayout(new BorderLayout());
         displayPanel.add(displayLabel);
         frame.add(displayPanel, BorderLayout.NORTH);
+
+        buttonsPanel.setLayout(new GridLayout(5, 4));
+        buttonsPanel.setBackground(black);
+        frame.add(buttonsPanel);
+
+        for (String str : buttonValues) {
+            JButton button = new JButton();
+            button.setFont(new Font("Arial", Font.PLAIN, 30));
+            button.setText(str);
+            button.setFocusable(false);
+            button.setBorder(new LineBorder(black));
+            if (Arrays.asList(topSymbols).contains(str)) {
+                button.setBackground(lightGray);
+                button.setForeground(black);
+            } else if (Arrays.asList(rightSymbols).contains(str)) {
+                button.setBackground(orange);
+                button.setForeground(Color.WHITE);
+            } else {
+                button.setBackground(darkGray);
+                button.setForeground(Color.WHITE);
+            }
+
+            buttonsPanel.add(button);
+        }
     }
 
 }
