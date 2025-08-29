@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
