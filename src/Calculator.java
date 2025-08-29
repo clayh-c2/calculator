@@ -24,6 +24,11 @@ public class Calculator {
     String[] rightSymbols = { "÷", "×", "-", "+", "=" };
     String[] topSymbols = { "AC", "+/-", "%" };
 
+    // Math trackers
+    String A = "0";
+    String operator = null;
+    String B = null;
+
     JFrame frame = new JFrame("Calculator");
     JLabel displayLabel = new JLabel();
     JPanel displayPanel = new JPanel();
@@ -79,7 +84,18 @@ public class Calculator {
                     if (Arrays.asList(rightSymbols).contains(buttonValue)) {
 
                     } else if (Arrays.asList(topSymbols).contains(buttonValue)) {
-
+                        if (buttonValue == "AC") {
+                            clearAll();
+                            displayLabel.setText(A);
+                        } else if (buttonValue == "+/-") {
+                            double numDisplay = Double.parseDouble(displayLabel.getText());
+                            numDisplay *= -1;
+                            displayLabel.setText(removeZeroDecimal(numDisplay));
+                        } else if (buttonValue == "%") {
+                            double numDisplay = Double.parseDouble(displayLabel.getText());
+                            numDisplay /= 100;
+                            displayLabel.setText(removeZeroDecimal(numDisplay));
+                        }
                     } else {
                         if (buttonValue == ".") {
                             if (!displayLabel.getText().contains(buttonValue)) {
@@ -94,16 +110,28 @@ public class Calculator {
                         } else { // Handles Square Root
                             String displayValue = displayLabel.getText();
                             double db = Math.abs(Double.parseDouble(displayValue));
-                            DecimalFormat df = new DecimalFormat("#.##");
 
                             double squareRoot = Math.sqrt(db);
 
-                            displayLabel.setText(df.format(squareRoot));
+                            displayLabel.setText(removeZeroDecimal(squareRoot));
                         }
                     }
                 }
             });
         }
+    }
+
+    void clearAll() {
+        A = "0";
+        operator = null;
+        B = null;
+    }
+
+    String removeZeroDecimal(double numDisplay) {
+        if (numDisplay % 1 == 0) {
+            return Integer.toString((int) numDisplay);
+        }
+        return Double.toString(numDisplay);
     }
 
 }
