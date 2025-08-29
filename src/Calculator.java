@@ -36,7 +36,6 @@ public class Calculator {
 
     Calculator() {
         // Creates inital JFrame
-        frame.setVisible(true);
         frame.setSize(boardWidth, boardHeight);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -143,6 +142,7 @@ public class Calculator {
                 }
             });
         }
+        frame.setVisible(true);
     }
 
     void clearAll() {
