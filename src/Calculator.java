@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -90,6 +91,14 @@ public class Calculator {
                             } else {
                                 displayLabel.setText(displayLabel.getText() + buttonValue);
                             }
+                        } else { // Handles Square Root
+                            String displayValue = displayLabel.getText();
+                            double db = Math.abs(Double.parseDouble(displayValue));
+                            DecimalFormat df = new DecimalFormat("#.##");
+
+                            double squareRoot = Math.sqrt(db);
+
+                            displayLabel.setText(df.format(squareRoot));
                         }
                     }
                 }
